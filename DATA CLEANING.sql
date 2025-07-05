@@ -10,12 +10,6 @@ SELECT * FROM world_layoffs.layoffs;
 
 
 -- DATA CLEANING
--- 1. removing duplicates
--- 2. standardizing data
--- 3. null values
--- 4. removing uneccessary columns
-
-
 
 -- 1. Removing Duplicates
 
@@ -23,7 +17,10 @@ SELECT *
 FROM layoffs_staging
 ;
 
-SELECT company, industry, total_laid_off,`date`,
+SELECT company, 
+	industry,
+	total_laid_off,
+	`date`,
 		ROW_NUMBER() OVER (
 			PARTITION BY company, industry, total_laid_off,`date`) AS row_num
 	FROM 
